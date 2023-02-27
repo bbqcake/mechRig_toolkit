@@ -88,7 +88,7 @@ def reload_shelf(shelf_name=SHELF_NAME):
 
 def setup_mech_rig_marking_menu():
 
-    import mechRig_toolkit.marking_menu as mechRig_marking_menu
+    import mechRig_toolkit.marking_menu.mechRig_marking_menu as mechRig_marking_menu
     importlib.reload(mechRig_marking_menu)
     mechRig_marking_menu.markingMenu()
 
