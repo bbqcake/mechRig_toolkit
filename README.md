@@ -1,3 +1,6 @@
+Porting so maya 2023 can load these great scripts by Tim Coleman.
+Original text below (Except the importlib mentions):
+
 # MECHANICAL RIG TOOLKIT v.1.0
 *Tim Coleman - tim.coleman.3d@gmail.com*
 
