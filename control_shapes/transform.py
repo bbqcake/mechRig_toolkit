@@ -3,9 +3,10 @@ LOG = logging.getLogger(__name__)
 
 import functools
 import os
+import importlib
 
-import core
-reload(core)
+import mechRig_toolkit.control_shapes.core as core
+importlib.reload(core)
 
 from maya import cmds
 import pymel.core as pm

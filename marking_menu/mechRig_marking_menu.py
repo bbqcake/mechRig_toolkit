@@ -7,7 +7,7 @@ http://bindpose.com/custom-marking-menu-maya-python/
 
 
 from mechRig_toolkit.marking_menu import mechRig_marking_menu
-reload(mechRig_marking_menu)
+importlib.reload(mechRig_marking_menu)
 mechRig_marking_menu.markingMenu()
 
 
@@ -199,7 +199,7 @@ def rebuildMarkingMenu(*args):
     '''This function assumes that this file has been imported in the userSetup.py
     and all it does is reload the module and initialize the markingMenu class which
     rebuilds our marking menu'''
-    cmds.evalDeferred("""from mechRig_toolkit.marking_menu import mechRig_marking_menu;reload(mechRig_marking_menu);mechRig_marking_menu.markingMenu()""")
+    cmds.evalDeferred("""from mechRig_toolkit.marking_menu import mechRig_marking_menu;importlib.reload(mechRig_marking_menu);mechRig_marking_menu.markingMenu()""")
     LOG.info('Mech Rig Marking Menu reloaded successfully!')
 
 markingMenu()

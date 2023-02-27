@@ -1,2 +1,3 @@
 import build
-reload(build)
+import importlib
+importlib.reload(build)

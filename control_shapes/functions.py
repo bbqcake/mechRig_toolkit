@@ -15,9 +15,10 @@ import functools
 import os
 
 from maya import cmds
+import importlib
 
-import core
-reload(core)
+import mechRig_toolkit.control_shapes.core as core
+importlib.reload(core)
 
 
 def get_available_control_shapes():

@@ -4,7 +4,8 @@
     To use, run these Python commands in Maya:
 
         from mechRig_toolkit.shelves import shelf_mechRig_utils
-        reload(shelf_mechRig_utils)
+        import importlib
+        importlib.reload(shelf_mechRig_utils)
         shelf_mechRig_utils.load(name="MechRig_utils")
 
 """
@@ -25,33 +26,34 @@ LOG = logging.getLogger(__name__)
 import os
 import sys
 import subprocess
+import importlib
 
-import shelf_base
-reload(shelf_base)
+import mechRig_toolkit.shelves.shelf_base as shelf_base
+importlib.reload(shelf_base)
 
 from maya import cmds
 
-from mechRig_toolkit.utils import locator
-reload(locator)
+import mechRig_toolkit.utils.locator as locator
+importlib.reload(locator)
 cmds.selectPref(trackSelectionOrder=True)
 
-from mechRig_toolkit.utils import utility
-reload(utility)
+import mechRig_toolkit.utils.utility as utility
+importlib.reload(utility)
 
-from mechRig_toolkit.utils import week6
-reload(week6)
+import mechRig_toolkit.utils.week6 as week6
+importlib.reload(week6)
 
-from mechRig_toolkit.control_shapes import functions as ctl_func
-reload(ctl_func)
+import mechRig_toolkit.control_shapes.functions as ctl_func
+importlib.reload(ctl_func)
 
-from mechRig_toolkit.control_shapes import core as ctl_core
-reload(ctl_core)
+import mechRig_toolkit.control_shapes.core as ctl_core
+importlib.reload(ctl_core)
 
-from mechRig_toolkit.control_shapes import color as ctl_color
-reload(ctl_color)
+import mechRig_toolkit.control_shapes.color as ctl_color
+importlib.reload(ctl_color)
 
-from mechRig_toolkit.control_shapes import transform as ctl_trans
-reload(ctl_trans)
+import mechRig_toolkit.control_shapes.transform as ctl_trans
+importlib.reload(ctl_trans)
 
 ICON_DIR = os.path.join(os.path.dirname(__file__), 'shelf_mechRig_utils_icons')
 SCRIPTS_DIR = os.path.join(os.path.dirname(__file__), 'shelf_mechRig_utils_scripts')
@@ -70,11 +72,11 @@ def explore_maya_project():
 def reload_shelf(shelf_name=SHELF_NAME):
     """Reloads shelf"""
     try:
-        import shelf_base
-        reload(shelf_base)
+        import mechRig_toolkit.shelves.shelf_base as shelf_base
+        importlib.reload(shelf_base)
 
-        from mechRig_toolkit.shelves import shelf_mechRig_utils
-        reload(shelf_mechRig_utils)
+        import mechRig_toolkit.shelves.shelf_mechRig_utils as shelf_mechRig_utils     
+        importlib.reload(shelf_mechRig_utils)
 
         shelf_mechRig_utils.load(name=shelf_name)
         LOG.info("Successfully reloaded {} shelf".format(SHELF_NAME))
@@ -86,8 +88,8 @@ def reload_shelf(shelf_name=SHELF_NAME):
 
 def setup_mech_rig_marking_menu():
 
-    from mechRig_toolkit.marking_menu import mechRig_marking_menu
-    reload(mechRig_marking_menu)
+    import mechRig_toolkit.marking_menu as mechRig_marking_menu
+    importlib.reload(mechRig_marking_menu)
     mechRig_marking_menu.markingMenu()
 
     LOG.info("Setup Mech Rig Marking Menu")
@@ -95,11 +97,10 @@ def setup_mech_rig_marking_menu():
 
 class load(shelf_base._shelf):
 
-    def build(self):
-
+    def build(self):        
         # Reload shelf button
         self.addButton(label="", icon=ICON_DIR + "/reloadShelf.png",
-                      command="from mechRig_toolkit.shelves import shelf_mechRig_utils; "
+                      command="import mechRig_toolkit.shelves.shelf_mechRig_utils as shelf_mechRig_utils;"
                               "maya.utils.executeDeferred('shelf_mechRig_utils.reload_shelf()')")
 
         # Separator
@@ -113,24 +114,24 @@ class load(shelf_base._shelf):
 
         self.addMenuItem(general_tools_menu, "Explore to Project Directory", command="from mechRig_toolkit.shelves "
                                                                            "import shelf_mechRig_utils;"
-                                                                           "reload(shelf_mechRig_utils);"
+                                                                           "importlib.reload(shelf_mechRig_utils);"
                                                                            "shelf_mechRig_utils.explore_maya_project()")
 
         self.addMenuItemDivider(general_tools_menu, divider=True, dividerLabel='SETUP...')
 
         self.addMenuItem(general_tools_menu, "Setup Marking Menu", command="from mechRig_toolkit.shelves "
                                                                            "import shelf_mechRig_utils;"
-                                                                           "reload(shelf_mechRig_utils);"
+                                                                           "importlib.reload(shelf_mechRig_utils);"
                                                                            "shelf_mechRig_utils.setup_mech_rig_marking_menu()")
 
         self.addMenuItemDivider(general_tools_menu, divider=True, dividerLabel='DISPLAY...')
 
         self.addMenuItem(general_tools_menu, "Toggle anti-alias viewport display", command="from mechRig_toolkit.utils import general; "
-                                                                                    "reload(general);"
+                                                                                    "importlib.reload(general);"
                                                                                     "general.toggle_antialias_viewport_display()")
 
         self.addMenuItem(general_tools_menu, "Set near clip plane", command="from mechRig_toolkit.utils import general; "
-                                                                            "reload(general);"
+                                                                            "importlib.reload(general);"
                                                                             "general.set_near_clip()")
 
         # Snap Tools
@@ -140,28 +141,28 @@ class load(shelf_base._shelf):
         self.addMenuItemDivider(snap_tools_menu, divider=True, dividerLabel='CREATE LOCATORS...')
 
         self.addMenuItem(snap_tools_menu, "Locator at selected position",command="from mechRig_toolkit.utils import locator; "
-                                                                        "reload(locator);"
+                                                                        "importlib.reload(locator);"
                                                                         "locator.selected_points()")
 
         self.addMenuItem(snap_tools_menu, "Locator at selected position/rotation", command="from mechRig_toolkit.utils import locator; "
-                                                                                           "reload(locator);"
+                                                                                           "importlib.reload(locator);"
                                                                                            "locator.create_locator_snap()")
 
         self.addMenuItem(snap_tools_menu, "Locator at center of selected", command="from mechRig_toolkit.utils "
                                                                                      "import locator;"
-                                                                                     "reload(locator);"
+                                                                                     "importlib.reload(locator);"
                                                                                      "locator.center_selection()")
 
         self.addMenuItem(snap_tools_menu, "Locator aimed at selected", command="from mechRig_toolkit.utils "
                                                                                "import locator;"
-                                                                               "reload(locator);"
+                                                                               "importlib.reload(locator);"
                                                                                "locator.aim_selection()")
 
         self.addMenuItemDivider(snap_tools_menu, divider=True, dividerLabel='MATCHING TRANSFORMS...')
 
         self.addMenuItem(snap_tools_menu, "Snap first items to last", command="from mechRig_toolkit.utils "
                                                                                "import locator;"
-                                                                               "reload(locator);"
+                                                                               "importlib.reload(locator);"
                                                                                "locator.snap_object()")
 
 
@@ -172,7 +173,7 @@ class load(shelf_base._shelf):
         self.addMenuItemDivider(joint_tools_menu, divider=True, dividerLabel='CREATE...')
 
         self.addMenuItem(joint_tools_menu, "Create follicles/joints on selected surface...",
-                         command="from mechRig_toolkit.utils import follicles; reload(follicles); follicles.create_follicles_along_selected_surface();")
+                         command="from mechRig_toolkit.utils import follicles; importlib.reload(follicles); follicles.create_follicles_along_selected_surface();")
 
         self.addMenuItemDivider(joint_tools_menu, divider=True, dividerLabel='UTILITIES...')
 
@@ -191,21 +192,21 @@ class load(shelf_base._shelf):
         self.addMenuItemDivider(skin_tools_menu, divider=True, dividerLabel='UTILITIES...')
 
         self.addMenuItem(skin_tools_menu, "Transfer Skin: Source -> Target",
-                         command="from mechRig_toolkit.utils import skin; reload(skin); skin.do_transfer_skin();")
+                         command="from mechRig_toolkit.utils import skin; importlib.reload(skin); skin.do_transfer_skin();")
 
         self.addMenuItem(skin_tools_menu, "Rename Shape Deformed nodes on selected...",
-                         command="from mechRig_toolkit.utils import skin; reload(skin); skin.rename_shape_deformed_nodes();")
+                         command="from mechRig_toolkit.utils import skin; importlib.reload(skin); skin.rename_shape_deformed_nodes();")
 
         self.addMenuItem(skin_tools_menu, "Print skinCluster command from selected...",
-                         command="from mechRig_toolkit.utils import skin; reload(skin); skin.return_skin_command();")
+                         command="from mechRig_toolkit.utils import skin; importlib.reload(skin); skin.return_skin_command();")
 
         self.addMenuItemDivider(skin_tools_menu, divider=True, dividerLabel='IMPORT/EXPORT...')
 
         self.addMenuItem(skin_tools_menu, "Import skin weight file onto selected (if it exists)...",
-                         command="from mechRig_toolkit.utils import skin; reload(skin); skin.import_skin_weights_selected();")
+                         command="from mechRig_toolkit.utils import skin; importlib.reload(skin); skin.import_skin_weights_selected();")
 
         self.addMenuItem(skin_tools_menu, "Export skin weight file from selected...",
-                         command="from mechRig_toolkit.utils import skin; reload(skin); skin.export_skin_weights_selected();")
+                         command="from mechRig_toolkit.utils import skin; importlib.reload(skin); skin.export_skin_weights_selected();")
 
 
         # Anim Control Tools

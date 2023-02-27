@@ -3,7 +3,7 @@
     Adds a "Control Shapes Tool" button to the currently active shelf.
 
     import control_shapes.shelf
-    reload(control_shapes.shelf)
+    importlib.reload(control_shapes.shelf)
     control_shapes.shelf.load()
 
 
@@ -17,18 +17,19 @@ LOG.setLevel(logging.DEBUG)
 import os
 
 from maya import cmds, mel
+import importlib
 
-from control_shapes import functions as ctl_func
-reload(ctl_func)
+import mechRig_toolkit.control_shapes.functions as ctl_func
+importlib.reload(ctl_func)
 
-from control_shapes import core as ctl_core
-reload(ctl_core)
+import mechRig_toolkit.control_shapes.core as ctl_core
+importlib.reload(ctl_core)
 
-from control_shapes import color as ctl_color
-reload(ctl_color)
+import mechRig_toolkit.control_shapes.color as ctl_color
+importlib.reload(ctl_color)
 
-from control_shapes import transform as ctl_trans
-reload(ctl_trans)
+import mechRig_toolkit.control_shapes.transform as ctl_trans
+importlib.reload(ctl_trans)
 
 
 #SHELF_NAME = "Custom"

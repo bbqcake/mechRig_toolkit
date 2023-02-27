@@ -6,7 +6,8 @@ LOG = logging.getLogger(__name__)
 LOG.setLevel(logging.INFO)
 
 from mechRig_toolkit.utils import skin
-reload(skin)
+import importlib
+importlib.reload(skin)
 
 from maya import cmds
 

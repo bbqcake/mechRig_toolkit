@@ -31,15 +31,16 @@ LOG = logging.getLogger(__name__)
 LOG.setLevel(logging.INFO)
 
 from maya import cmds
+import importlib
 
 from mechRig_toolkit.utils import utility as util
-reload(util)
+importlib.reload(util)
 
 import legs
-reload(legs)
+importlib.reload(legs)
 
 import deform
-reload(deform)
+importlib.reload(deform)
 
 
 ASSET = 'Cambot'

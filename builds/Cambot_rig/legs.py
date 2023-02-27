@@ -10,15 +10,16 @@ LOG = logging.getLogger(__name__)
 LOG.setLevel(logging.INFO)
 
 from maya import cmds
+import importlib
 
 from mechRig_toolkit.utils import utility as util
-reload(util)
+importlib.reload(util)
 
 from mechRig_toolkit.utils import joints as jnt
-reload(jnt)
+importlib.reload(jnt)
 
 from mechRig_toolkit.utils import ik
-reload(ik)
+importlib.reload(ik)
 
 # NODE NAMING VARIABLES
 MASTER_OFFSET = 'cn_masterOffset_ctl'

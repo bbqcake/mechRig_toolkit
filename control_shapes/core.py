@@ -14,13 +14,14 @@ import re
 import subprocess
 
 from maya import cmds
+import importlib
 
 # Local import
-import functions
-reload(functions)
+import mechRig_toolkit.control_shapes.functions as functions
+importlib.reload(functions)
 
-import utils
-reload(utils)
+import mechRig_toolkit.control_shapes.utils as utils
+importlib.reload(utils)
 
 CURRENT_DIRECTORY = os.path.dirname(__file__)
 SHAPE_LIBRARY_PATH = os.path.abspath('{}\\shapes'.format(CURRENT_DIRECTORY))

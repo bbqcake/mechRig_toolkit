@@ -4,7 +4,8 @@ joints.py
 Various functions for creating and editing joints and their axis.
 
     from mechRig_toolkit.builds import Cambot_rig
-    reload(Cambot_rig)# Run this to pick up any changes made
+    import importlib
+    importlib.reload(Cambot_rig)# Run this to pick up any changes made
     Cambot_rig.build.run()
 
 """

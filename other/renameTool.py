@@ -3,7 +3,8 @@
     Example of how to call renameTool.mel from renameTool.py
 
 	from mechRig_toolkit.other import renameTool
-	reload(renameTool)
+    import importlib.reload
+	importlib.reload(renameTool)
 	renameTool.call_mel()
 
 """

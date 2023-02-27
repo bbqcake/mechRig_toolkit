@@ -23,7 +23,7 @@ Contain various Python scripts with functions to aid in the creation of rigs.
 You can test if your installation was successful by running the code below to create locators at the selected objects or points.  Select objects or components to create locators at and run the code below in the Maya Script Editor
 #### Running utility functions example
     from mechRig_toolkit.utils import locator
-    reload(locator)
+    importlib.reload(locator)
     locator.selected_points()
 
 
@@ -32,7 +32,7 @@ You can test if your installation was successful by running the code below to cr
 Custom Maya tool shelf for quick access to often used utility functions and tools.
 #### To Load Custom Maya Tool shelf
     from mechRig_toolkit.shelves import shelf_mechRig_utils
-    reload(shelf_mechRig_utils)
+    importlib.reload(shelf_mechRig_utils)
     shelf_mechRig_utils.load(name="MechRig_utils")
 
 
@@ -55,7 +55,7 @@ Add these lines to your `<USER>/Documents/maya/scripts/userSetup.py` file
 Custom Maya Marking Menu for quick access to often used utility functions and tools.  Use RMB + CTL + ALT to invoke marking menu in Maya.
 #### To Load Custom Marking menu
     from mechRig_toolkit.marking_menu import mechRig_marking_menu
-    reload(mechRig_marking_menu)
+    importlib.reload(mechRig_marking_menu)
     mechRig_marking_menu.markingMenu()
 ##
 

@@ -14,7 +14,8 @@ to find the path to where your MEL script resides so it can be sourced and calle
 #### Example of how to call renameTool.mel from renameTool.py
 
 	from mechRig_toolkit.other import renameTool
-	reload(renameTool)
+	import importlib
+	importlib.reload(renameTool)
 	renameTool.call_mel()
 
 

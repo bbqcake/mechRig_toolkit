@@ -3,9 +3,10 @@ import logging
 LOG = logging.getLogger(__name__)
 LOG.setLevel(logging.DEBUG)
 from maya import cmds
+import importlib
 
 from mechRig_toolkit.utils import common
-reload(common)
+importlib.reload(common)
 
 def create_pole_vector(pv_ctl, ik_handle):
     """Positions pv_ctl and creates pole vector constraint for ik_handle to prevent any joint rotation
